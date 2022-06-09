@@ -1,30 +1,25 @@
-// https://open.er-api.com/v6/latest/USD
-
-
-
 // es6 promise ile
 
 class Currency {
     constructor(firstCurrency, secondCurrency) {
         this.firstCurrency = firstCurrency;
         this.secondCurrency = secondCurrency;
-        this.url = "https://open.er-api.com/v6/latest/USD";
-
+        this.url = "https://api.exchangerate.host/latest?base=";
         this.amount = null;
     }
     exchange() {
-        return new Promise((resolve,reject)=>{
+        return new Promise((resolve,reject) => {
             fetch(this.url + this.firstCurrency)
-            .then(response => response.json())
-            .then(data => {
-                var parity = data.rates["rates"][this.secondCurrency];
-                var amount2 = Number(this.amount);
+        .then(response => response.json())
+        .then(data => {
+            var parity = data["rates"][this.secondCurrency];
+            var amount2 = Number(this.amount);
 
-                var total = parity * amount2;
-                resolve(total);
-            })
-            .catch(err => reject(err));
+            var total = parity * amount2;
+            resolve(total);
         })
+        .catch(err => console.log(err));
+        });
         
     }
 

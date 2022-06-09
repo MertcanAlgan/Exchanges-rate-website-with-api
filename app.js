@@ -2,7 +2,7 @@
 var amountElement = document.querySelector("#amount");
 var firstSelect = document.querySelector("#firstCurrency");
 var secondSelect = document.querySelector("#secondCurrency");
-var currency = new Currency("USD", "TRY");
+var currency = new Currency("USD","TRY");
 var ui = new UI(firstSelect,secondSelect);
 
 eventListeners();
@@ -26,5 +26,4 @@ function exchangeCurrency() {
         ui.displayResult(result);
     })
     .catch(err => console.log(err));
-
 }
